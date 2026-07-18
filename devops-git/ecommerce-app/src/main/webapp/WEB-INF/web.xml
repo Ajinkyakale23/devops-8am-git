@@ -1,0 +1,22 @@
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         version="6.0">
+
+    <servlet>
+
+        <servlet-name>home</servlet-name>
+
+        <servlet-class>
+            com.ecommerce.controller.HomeServlet
+        </servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>home</servlet-name>
+
+        <url-pattern>/home</url-pattern>
+
+    </servlet-mapping>
+
+</web-app>
