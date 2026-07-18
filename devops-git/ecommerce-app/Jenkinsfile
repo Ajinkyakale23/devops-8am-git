@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK21'
+        maven 'Maven'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Repository already checked out by Jenkins'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('devops-git/ecommerce-app') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Archive WAR') {
+            steps {
+                archiveArtifacts artifacts: 'devops-git/ecommerce-app/target/*.war', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful'
+        }
+
+        failure {
+            echo 'Build Failed'
+        }
+    }
+}
